@@ -1,0 +1,18 @@
+{
+  "name": "filelink-for-gokapi",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlcrvn/gokapi-filelink.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mlcrvn/gokapi-filelink/issues"
+  },
+  "homepage": "https://github.com/mlcrvn/gokapi-filelink",
+  "scripts": {
+    "test": "node tests/run.js",
+    "check": "node --check gokapi.js && node --check background.js && node --check management.js"
+  }
+}

@@ -1,0 +1,6 @@
+node_modules/
+qa/
+design-system.md
+*.xpi
+*.zip
+*-SHA256.txt

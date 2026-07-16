@@ -1,0 +1,162 @@
+<!doctype html>
+<!-- SPDX-FileCopyrightText: 2026 Mathieu Lécrivain -->
+<!-- SPDX-License-Identifier: MPL-2.0 -->
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FileLink for Gokapi</title>
+    <link rel="stylesheet" href="management.css">
+    <script src="management.js" defer></script>
+  </head>
+  <body>
+    <main class="settings-shell">
+      <form id="settings-form" class="settings-panel" novalidate>
+        <header class="heading">
+          <img src="icons/gokapi.svg" alt="" width="48" height="48">
+          <div>
+            <h1>FileLink for Gokapi</h1>
+            <p>Configurez votre instance Gokapi pour envoyer les pièces jointes volumineuses.</p>
+            <p class="project-reference">
+              Projet indépendant utilisant
+              <a href="https://github.com/Forceu/Gokapi" target="_blank" rel="noopener noreferrer">Gokapi</a>.
+            </p>
+          </div>
+        </header>
+
+        <section class="form-body" aria-label="Configuration Gokapi">
+          <div class="field">
+            <label for="server-url">URL de l’instance</label>
+            <input
+              id="server-url"
+              name="serverUrl"
+              type="url"
+              inputmode="url"
+              autocomplete="url"
+              placeholder="https://gokapi.mondomaine.fr"
+              required
+            >
+            <p class="helper">Adresse HTTPS publique, sans ajouter <code>/api</code>.</p>
+          </div>
+
+          <div class="field">
+            <label for="api-key">Clé API</label>
+            <div class="secret-control">
+              <input
+                id="api-key"
+                name="apiKey"
+                type="password"
+                autocomplete="off"
+                spellcheck="false"
+                required
+              >
+              <button
+                id="toggle-api-key"
+                class="reveal-button"
+                type="button"
+                aria-label="Afficher la clé API"
+                aria-pressed="false"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+            <p class="helper">Permission UPLOAD requise ; VIEW et DELETE sont recommandées.</p>
+          </div>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="expiry-days">Expiration</label>
+              <input
+                id="expiry-days"
+                name="expiryDays"
+                type="number"
+                min="0"
+                max="3650"
+                step="1"
+                value="14"
+                required
+              >
+              <p class="helper">Nombre de jours ; 0 signifie sans expiration.</p>
+            </div>
+
+            <div class="field">
+              <label for="allowed-downloads">Téléchargements autorisés</label>
+              <input
+                id="allowed-downloads"
+                name="allowedDownloads"
+                type="number"
+                min="0"
+                max="1000000"
+                step="1"
+                value="0"
+                required
+              >
+              <p class="helper">Nombre maximum ; 0 signifie illimité.</p>
+            </div>
+          </div>
+
+          <label class="check-row" for="protect-with-password">
+            <input id="protect-with-password" name="protectWithPassword" type="checkbox">
+            <span>Protéger avec un mot de passe</span>
+          </label>
+
+          <div class="field password-field" data-enabled="false">
+            <label for="download-password">Mot de passe</label>
+            <div class="secret-control">
+              <input
+                id="download-password"
+                name="password"
+                type="password"
+                autocomplete="new-password"
+                placeholder="Entrez un mot de passe"
+                disabled
+              >
+              <button
+                id="toggle-password"
+                class="reveal-button"
+                type="button"
+                aria-label="Afficher le mot de passe"
+                aria-pressed="false"
+                disabled
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+            <p class="helper">Les destinataires devront saisir ce mot de passe pour télécharger le fichier.</p>
+          </div>
+
+          <div class="action-row">
+            <button id="save-button" class="primary-button" type="submit">
+              <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m5 12 4.2 4.2L19 6.5"/>
+              </svg>
+              <span>Enregistrer et tester</span>
+              <span class="spinner" aria-hidden="true"></span>
+            </button>
+
+            <div id="status" class="status" data-state="hidden" role="status" aria-live="polite">
+              <svg class="status-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="m8 12 2.6 2.6L16.5 9"/>
+              </svg>
+              <span id="status-text"></span>
+            </div>
+          </div>
+        </section>
+
+        <footer class="security-note">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2.8 19 5.6v5.8c0 4.5-2.8 8.2-7 9.8-4.2-1.6-7-5.3-7-9.8V5.6L12 2.8Z"/>
+          </svg>
+          <p>La clé API reste enregistrée localement dans Thunderbird.</p>
+        </footer>
+      </form>
+    </main>
+  </body>
+</html>
