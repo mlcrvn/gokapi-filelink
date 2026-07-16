@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "FileLink for Gokapi",
   "description": "Utilisez votre instance Gokapi comme fournisseur FileLink dans Thunderbird.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Mathieu Lécrivain",
   "homepage_url": "https://github.com/mlcrvn/gokapi-filelink",
   "icons": {

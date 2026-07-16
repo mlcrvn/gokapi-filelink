@@ -23,7 +23,7 @@ Projet communautaire indépendant, sans affiliation ni approbation de Gokapi ou 
 
 1. Ouvrir le gestionnaire de modules complémentaires de Thunderbird.
 2. Dans le menu avec l’icône d’engrenage, choisir **Installer un module depuis un fichier**.
-3. Sélectionner `FileLinkForGokapi-1.0.0.xpi`.
+3. Sélectionner le fichier `FileLinkForGokapi-<version>.xpi` téléchargé.
 4. Dans les paramètres de Thunderbird, ouvrir **Rédaction > Pièces jointes**, puis ajouter le fournisseur Gokapi.
 
 Le paquet construit localement n’est ni publié ni audité par addons.thunderbird.net. Pour le développement, la page **Déboguer les modules complémentaires** permet aussi de charger temporairement le fichier `manifest.json` depuis les sources.

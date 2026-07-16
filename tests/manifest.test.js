@@ -19,7 +19,7 @@ const packageMetadata = JSON.parse(
 test("manifest declares a Thunderbird MV3 cloudFile provider", () => {
   assert.equal(manifest.manifest_version, 3);
   assert.equal(manifest.name, "FileLink for Gokapi");
-  assert.equal(manifest.version, "1.0.0");
+  assert.equal(manifest.version, "1.0.1");
   assert.equal(manifest.author, "Mathieu Lécrivain");
   assert.equal(
     manifest.homepage_url,
