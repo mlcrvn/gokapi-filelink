@@ -79,3 +79,15 @@ SPDX-License-Identifier: MPL-2.0
 
 `manifest.json` en est dépourvu — JSON n'admet pas de commentaire. C'est normal,
 ne pas tenter de l'y ajouter.
+
+## Agent skills
+
+### Issue tracker
+
+Les issues vivent dans les GitHub Issues de `mlcrvn/gokapi-filelink`. Voir
+`docs/agents/issue-tracker.md`.
+
+### Domain docs
+
+Contexte unique (`CONTEXT.md` + `docs/adr/` à la racine, créés à la demande).
+Voir `docs/agents/domain.md`.
