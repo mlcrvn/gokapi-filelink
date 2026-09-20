@@ -10,9 +10,19 @@ require("../gokapi.js");
 
 const listeners = {};
 const requests = [];
+const updateAccountCalls = [];
 let serverE2E = false;
 const storageState = {
   accounts: {
+    "account-broken": {
+      serverUrl: "https://stale.example.test/gokapi",
+      apiKey: "stale-key",
+      expiryDays: 14,
+      allowedDownloads: 5,
+      protectWithPassword: false,
+      password: "",
+      maxFileSizeBytes: 2048
+    },
     "account-a": {
       serverUrl: "https://files.example.test/gokapi",
       apiKey: "test-key",
@@ -56,7 +66,12 @@ global.browser = {
     onMessage: event("message")
   },
   cloudFile: {
-    updateAccount: async () => undefined,
+    updateAccount: async (accountId, details) => {
+      if (accountId === "account-broken") {
+        throw new Error("Thunderbird doesn't know this account anymore");
+      }
+      updateAccountCalls.push({ accountId, details });
+    },
     onAccountAdded: event("accountAdded"),
     onAccountDeleted: event("accountDeleted"),
     onFileUpload: event("upload"),
@@ -120,6 +135,26 @@ global.fetch = async (url, options = {}) => {
 };
 
 require("../background.js");
+
+test("startup reasserts configured:true for accounts already saved in storage", () => {
+  const call = updateAccountCalls.find(
+    ({ accountId }) => accountId === "account-a"
+  );
+  assert.ok(call, "expected updateAccount to be called for account-a");
+  assert.equal(call.details.configured, true);
+  assert.equal(call.details.uploadSizeLimit, 1048576);
+});
+
+test("startup reassertion for one account failing does not block the others", () => {
+  const brokenCall = updateAccountCalls.find(
+    ({ accountId }) => accountId === "account-broken"
+  );
+  const otherCall = updateAccountCalls.find(
+    ({ accountId }) => accountId === "account-a"
+  );
+  assert.equal(brokenCall, undefined);
+  assert.ok(otherCall, "account-a must still be reasserted");
+});
 
 test("connection test reads Gokapi version and upload limit", async () => {
   const result = await listeners.message({

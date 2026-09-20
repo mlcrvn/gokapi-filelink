@@ -262,6 +262,26 @@ async function renameFile(account, fileId, newName) {
   }
 }
 
+async function reassertConfiguredAccounts() {
+  const accounts = await getObjectStore(ACCOUNTS_STORE);
+  for (const [accountId, config] of Object.entries(accounts)) {
+    try {
+      await browser.cloudFile.updateAccount(accountId, {
+        configured: true,
+        spaceRemaining: -1,
+        spaceUsed: -1,
+        uploadSizeLimit:
+          Number(config.maxFileSizeBytes) > 0 ? config.maxFileSizeBytes : -1
+      });
+    } catch (error) {
+      console.error(
+        `FileLink for Gokapi startup reassertion failed for ${accountId}`,
+        error
+      );
+    }
+  }
+}
+
 browser.runtime.onMessage.addListener((message) => {
   if (message?.type === "gokapi:testConnection") {
     return testConnection(message.config);
@@ -305,3 +325,7 @@ browser.cloudFile.onFileUploadAbort.addListener((account, fileId) => {
 
 browser.cloudFile.onFileDeleted.addListener(deleteFile);
 browser.cloudFile.onFileRename.addListener(renameFile);
+
+reassertConfiguredAccounts().catch((error) => {
+  console.error("FileLink for Gokapi startup reassertion failed", error);
+});
