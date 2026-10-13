@@ -87,6 +87,10 @@ ne pas tenter de l'y ajouter.
 Les issues vivent dans les GitHub Issues de `mlcrvn/gokapi-filelink`. Voir
 `docs/agents/issue-tracker.md`.
 
+La référence du code est Forgejo (`origin`, `mathieu/gokapi-filelink`) ; GitHub
+reçoit les commits par un miroir de push. Ne jamais pousser vers `github` à la
+main : le miroir l'écraserait.
+
 ### Domain docs
 
 Contexte unique (`CONTEXT.md` + `docs/adr/` à la racine, créés à la demande).
