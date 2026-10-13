@@ -7,8 +7,8 @@ Extension Thunderbird Manifest V3 qui utilise une instance Gokapi configurable c
 
 Projet communautaire indépendant, sans affiliation ni approbation de Gokapi ou de Thunderbird. Le projet Gokapi officiel est disponible sur <https://github.com/Forceu/Gokapi>.
 
-- Code source : <https://github.com/mlcrvn/gokapi-filelink>
-- Questions et anomalies : <https://github.com/mlcrvn/gokapi-filelink/issues>
+- Code source (référence) : <https://git.mlcrvn.net/mathieu/gokapi-filelink>, miroir : <https://github.com/mlcrvn/gokapi-filelink>
+- Questions et anomalies : <https://github.com/mlcrvn/gokapi-filelink/issues> (les inscriptions sont fermées sur le Forgejo ; les tickets se déposent sur GitHub)
 
 ## Prérequis
 
